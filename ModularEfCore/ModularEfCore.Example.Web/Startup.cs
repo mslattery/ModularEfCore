@@ -1,10 +1,8 @@
 ﻿// Copyright (c) Philipp Wagner. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,7 +59,7 @@ namespace ModularEfCore.Example.Web
 
             // Add the DbContextOptions:
             var dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("ModularEfCore.Migrations"))
+                .UseMySql(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("ModularEfCore.Migrations"))
                 .Options;
 
             services.AddSingleton(dbContextOptions);
